@@ -1,0 +1,42 @@
+---
+title: "GetGeo Example"
+author: "Charles J Frenzel"
+date: "June 18, 2015"
+output: html_document
+---
+
+This reads in the functions wiht OAuth Access.
+
+```{r, warning=FALSE, message=FALSE}
+source("C:\\Users\\Cfrenzel\\Documents\\Code\\GetGeocode.R")
+```
+
+To call function will need a file with the address line
+
+```{r}
+str(getGeo)
+```
+
+Here is an example :
+
+```{r}
+adds = c("6621 Fannin Street, Houston, TX"
+         ,"680 South Fourth Street, Louisville, Kentucky 40202")
+
+results = getGeo(adds)
+```
+
+This output is pretty long (Yahoo) so I am only showing some of it:
+
+```{r, echo=FALSE}
+names(results) <- tolower(names(results))
+results[ , names(results) %in% c("yahoo_line1", "yahoo_line2","yahoo_postal",
+                                  "yahoo_latitude", "yahoo_longitude","yahoo_radius",
+                                 "google_latitude", "google_longitude") ]
+```
+
+List of columns generated :
+
+```{r ,echo = FALSE }
+names(results)
+```
